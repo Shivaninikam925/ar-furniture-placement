@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0e1628">
+<title>AR Furniture Placement</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/jsm/" } }
+</script>
+</head>
+<body>
+<div id="viewer"></div>
+
+<!-- 3D preview UI (shown outside AR) -->
+<header class="top"><h1>AR Furniture Placement</h1><span id="support" class="pill">Checking AR…</span></header>
+
+<section id="panel" class="panel">
+  <div class="catalog chips"></div>
+  <div id="info" class="info"></div>
+  <div class="row"><span>Colour</span><div class="swatches"></div></div>
+  <div class="row"><span>Rotate</span><input id="yaw" type="range" min="0" max="359" value="0" aria-label="Rotation"></div>
+  <div class="row"><span>Room</span>
+    <label class="num"><input id="roomW" type="number" min="1" max="15" step="0.1" value="4"> m</label> ×
+    <label class="num"><input id="roomD" type="number" min="1" max="15" step="0.1" value="3.5"> m</label>
+    <b id="fit"></b>
+  </div>
+  <button id="start-ar" class="primary" disabled>Start AR</button>
+  <p id="hint" class="hint"></p>
+</section>
+
+<!-- AR overlay (WebXR DOM overlay root) -->
+<div id="ar-overlay">
+  <div class="ar-top ctrl"><span id="ar-status">Move your phone slowly to scan the floor…</span><button id="exit" class="ghost">Exit</button></div>
+  <div class="ar-bottom ctrl">
+    <div class="catalog chips"></div>
+    <div class="swatches"></div>
+    <div class="btns">
+      <button id="rotL" class="ghost">⟲ 15°</button>
+      <button id="rotR" class="ghost">⟳ 15°</button>
+      <button id="mode" class="ghost">Mode: Add</button>
+      <button id="undo" class="ghost">Undo</button>
+      <button id="clear" class="ghost">Clear</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
